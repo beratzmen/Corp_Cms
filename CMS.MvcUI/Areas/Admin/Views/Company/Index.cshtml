@@ -1,0 +1,89 @@
+﻿@model CMS.Entities.Company
+@{
+    ViewBag.Title = "Şirket Bilgileri";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>ŞİRKET BİLGİLERİNİ GÜNCELLE</h2>
+                    <ul class="header-dropdown m-r--5">
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="javascript:void(0);">Action</a></li>
+                                <li><a href="javascript:void(0);">Another action</a></li>
+                                <li><a href="javascript:void(0);">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        @using (Html.BeginForm("Index", "Company"))
+                        {
+                           
+                                        <input type="hidden"  value="@Model.Id" name="Id" />
+                                   
+                            <div class="col-sm-12">
+                                @Html.Label("Şirket Kısa İsmi - Logo :")
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" placeholder="ŞİRKET KISA İSMİ - LOGO" value="@Model.Name" name="Name" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                @Html.Label("Şirket Tam İsmi - Logo :")
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" placeholder="ŞİRKET TAM İSMİ" value="@Model.FullName" name="FullName" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                @Html.Label("Şirket Telefonu :")
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" placeholder="ŞİRKET TELEFONU" value="@Model.Phone" name="Phone" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                @Html.Label("Şirket Maili :")
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" placeholder="ŞİRKET MAİLİ" value="@Model.EMail" name="EMail" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                @Html.Label("Şirket Adresi :")
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" placeholder="ŞİRKET ADRESİ" value="@Model.Adress" name="Adress" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                @Html.Label("Şirket Açıklaması :")
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" placeholder="ŞİRKET AÇIKLAMASI" value="@Model.Description" name="Description" />
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-lg btn-success waves-effect">KAYDET</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

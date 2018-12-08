@@ -1,0 +1,133 @@
+﻿<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+        <!-- User Info -->
+        <div class="user-info">
+            <div class="image">
+                <img src="~/Areas/Admin/Content/images/user.png" width="48" height="48" alt="User" />
+            </div>
+            @{ Html.RenderAction("LeftMenuProfileAction", "User");}
+        </div>
+        <!-- #User Info -->
+        <!-- Menu -->
+        <div class="menu">
+            <ul class="list">
+                <li class="header">MAIN NAVIGATION</li>
+
+                @if (Session["RolId"] != null)
+                {
+                    if (Convert.ToInt32(Session["RolId"].ToString()) == 1)
+                    {
+                        <li>
+                            <a href="@Url.Action("Index","Home")">
+                                <i class="material-icons">home</i>
+                                <span>ANA SAYFA</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("ShowMessage","Contact")">
+                                <i class="material-icons">message</i>
+                                <span>MESAJLAR</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("MenuEkle","Menu")">
+                                <i class="material-icons">library_books</i>
+                                <span>MENÜ İŞLEMLERİ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("PageList","Content")">
+                                <i class="material-icons">assignment</i>
+                                <span>İÇERİK İŞLEMLERİ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AddSlider","Slider")">
+                                <i class="material-icons">perm_media</i>
+                                <span>SLİDER İŞLEMLERİ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","Reference")">
+                                <i class="material-icons">local_library</i>
+                                <span>REFERANS İŞLEMLERİ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("ProductList","Product")">
+                                <i class="material-icons">shopping_basket</i>
+                                <span>ÜRÜNLER</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("News","News")">
+                                <i class="material-icons">event</i>
+                                <span>DUYURULAR</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("List","Job")">
+                                <i class="material-icons">share</i>
+                                <span>İŞ İLANLARI</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","User")">
+                                <i class="material-icons">person</i>
+                                <span>YÖNETİCİLER</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("List","Bulletin")">
+                                <i class="material-icons">sms</i>
+                                <span>BÜLTEN İŞLEMLERİ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","Company")">
+                                <i class="material-icons">copyright</i>
+                                <span>ŞİRKET BİLGİLERİ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("List","SocialIcon")">
+                                <i class="material-icons">share</i>
+                                <span>SOSYAL MEDYA LİNKLERİ</span>
+                            </a>
+                        </li>
+                    }
+                    if (Convert.ToInt32(Session["RolId"].ToString()) == 2)
+                    {
+                        <li>
+                            <a href="@Url.Action("MenuEkle","Menu")">
+                                <i class="material-icons">library_books</i>
+                                <span>MENÜ İŞLEMLERİ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("News","News")">
+                                <i class="material-icons">event</i>
+                                <span>DUYURULAR</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AddSlider","Slider")">
+                                <i class="material-icons">perm_media</i>
+                                <span>SLİDER İŞLEMLERİ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","NewsMember")">
+                                <i class="material-icons">verified_user</i>
+                                <span>BÜLTEN ABONELERİ</span>
+                            </a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+        <!-- #Menu -->     
+    </aside>
+    <!-- #END# Left Sidebar -->
+</section>

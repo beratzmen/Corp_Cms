@@ -1,0 +1,91 @@
+﻿@model CMS.MvcUI.Areas.Admin.Models.vmUserUpdate
+
+@{
+    ViewBag.Title = "Kişi Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h4>YÖNETİCİ KAYDI GÜNCELLE</h4>
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+
+        <div class="body">
+            <div class="row clearfix">
+                @using (Html.BeginForm("UserUpdate", "User", FormMethod.Post))
+                {
+                    <div class="signup-box">
+                        <div class="card">
+                            <div class="body">
+                                <div class="msg"></div>
+
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">person</i>
+                                    </span>
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" name="Id" placeholder="İsim" value="@Model.user.Id" required autofocus readonly>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">person</i>
+                                    </span>
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" name="Name" placeholder="İsim" value="@Model.user.Name" required autofocus>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">person</i>
+                                    </span>
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" name="SurName" placeholder="Soy İsim" value="@Model.user.SurName" required>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">email</i>
+                                    </span>
+                                    <div class="form-line">
+                                        <input type="email" class="form-control" name="EMail" placeholder="Email Address" value="@Model.user.EMail" required>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">lock</i>
+                                    </span>
+                                    <div class="form-line">
+                                        <input type="password" class="form-control" name="Password" minlength="6" placeholder="Şifre" required>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">lock</i>
+                                    </span>
+                                    <div class="form-line">
+                                        <input type="password" class="form-control" name="Password" minlength="6" placeholder="Şifre Tekrar" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <select class="form-control show-tick" name="RoleId" required autofocus>
+                                        @foreach (var item in Model.role)
+                                        {
+                                            <option value="@item.Id">@item.RoleName</option>
+                                        }
+                                    </select>
+                                </div>
+                                <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">KAYDET</button>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,104 @@
+﻿@model List<CMS.Entities.JobUser>
+
+@{
+    ViewBag.Title = "Başvuranların Listesi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Exportable Table -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    BAŞVURU YAPANLAR
+                </h2>
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead>
+                            <tr>
+                                <th>SİL</th>
+                                <th>ADI</th>
+                                <th>SOYADI</th>
+                                <th>TELEFON</th>
+                                <th>BAŞVURU TARİHİ</th>
+                                <th>CV</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>SİL</th>
+                                <th>ADI</th>
+                                <th>SOYADI</th>
+                                <th>TELEFON</th>
+                                <th>BAŞVURU TARİHİ</th>
+                                <th>CV</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td style="text-align:center">
+                                    @*/Admin/Contact/MessageDelete?id=@item.Id*@
+                                    <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float modalAc" data-toggle="modal" data-target="#smallModal" data-id="@item.Id"><i class="material-icons">delete</i></button>
+                                </td>
+                                <td>@item.Name</td>
+                                <td>@item.SurName</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Date</td>
+                                <td><a href="@Url.Action("Download", "JobUser", new { file =item.CV })">İndir</a></td>                              
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Exportable Table -->
+<!-- Small Size Modal -->
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="smallModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect messageSil">EVET</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">HAYIR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/FrontEnd/js/jquery-3.2.1.min.js"></script>
+<script>
+    $(".modalAc").click(function () {
+        var id = $(this).data("id");
+        $(".modal-body").html("ID'si " + id + " olan  kullanıcı silinsin mi ?");
+        $(".messageSil").data("id", id);
+    });
+    $(".messageSil").click(function () {
+        var id = $(this).data("id");
+        $.ajax({
+            type: "POST",
+            url: "/Admin/JobUser/Delete/" + id,
+            success: function () {
+                alert("Kayıt Silindi ..");
+                window.location.href = "/Admin/Job/List";
+                //window.location.replace("List","Job");
+            },
+            error: function () {
+                window.location.href = "/Admin/Home/Index";
+            }
+        });
+    });
+</script>

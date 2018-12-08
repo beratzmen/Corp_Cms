@@ -1,0 +1,120 @@
+﻿@model  CMS.MvcUI.Models.ContactViewModel
+
+@{
+    ViewBag.Title = "İletişim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/contact.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/contact_responsive.css">
+</head>
+
+
+
+<!-- Home -->
+<div class="home">
+    <div class="breadcrumbs_container">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li></li>
+                            <li>İLETİŞİM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+{
+    <!-- Contact Info -->
+    <div class="contact_info_container">
+        <div class="container">
+            <div class="row">
+                <!-- Contact Form -->
+                <div class="counter_form">
+                    <div class="row fill_height">
+                        <div class="col fill_height">
+                            <form class="counter_form_content d-flex flex-column align-items-center justify-content-center" action="/Contact/SendMessage" method="post">
+                                <div class="counter_form_title">BİZE MESAJ BIRAKIN</div>
+                                <input type="text" class="counter_input" placeholder="İSMİNİZ : " name="Name" required="required">
+                                <input type="tel" maxlength="11" class="counter_input" placeholder="TELEFONUNUZ : " name="Phone" required="required">
+                                <input type="email" class="counter_input" placeholder="MAİL ADRESİNİZ : " name="EMail" required="required">
+                                <textarea class="counter_input counter_text_input" placeholder="MESAJINIZ : " name="Message" required="required"></textarea>
+                                <button type="submit" class="counter_form_button">GÖNDER</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Info -->
+                <div class="col-lg-6">
+                    <div class="contact_info">
+                        <div class="contact_info_title">İLETİŞİM BİLGİLERİ</div>
+                        <div class="contact_info_text">
+                            <p>@Model.company.Description</p>
+                        </div>
+                        <div class="contact_info_location">
+                            <div class="contact_info_location_title">@Model.company.Adress</div>
+                            <ul class="location_list">
+                                <li style="margin-top:30px;">@Model.company.Phone</li>
+                                <li style="margin-top:30px;">@Model.company.EMail</li>
+                            </ul>
+                        </div>
+                        <br /><br /><br />
+                        <h1 style="margin-bottom: 50px;">@Model.company.FullName</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (Session["language"].ToString() == "EN")
+{
+    <!-- Contact Info -->
+    <div class="contact_info_container">
+        <div class="container">
+            <div class="row">
+                <!-- Contact Form -->
+                <div class="counter_form">
+                    <div class="row fill_height">
+                        <div class="col fill_height">
+                            <form class="counter_form_content d-flex flex-column align-items-center justify-content-center" action="/Contact/SendMessage" method="post">
+                                <div class="counter_form_title">leave message</div>
+                                <input type="text" class="counter_input" placeholder="NAME : " name="Name" required="required">
+                                <input type="tel" maxlength="11" class="counter_input" placeholder="PHONE : " name="Phone" required="required">
+                                <input type="email" class="counter_input" placeholder="MAİL  : " name="EMail" required="required">
+                                <textarea class="counter_input counter_text_input" placeholder="MESSAGE : " name="Message" required="required"></textarea>
+                                <button type="submit" class="counter_form_button">SEND</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Info -->
+                <div class="col-lg-6">
+                    <div class="contact_info">
+                        <div class="contact_info_title">CONTACT INFORMATION</div>
+                        <div class="contact_info_text">
+                            <p>@Model.company.Description</p>
+                        </div>
+                        <div class="contact_info_location">
+                            <div class="contact_info_location_title">@Model.company.Adress</div>
+                            <ul class="location_list">
+                                <li style="margin-top:30px;">@Model.company.Phone</li>
+                                <li style="margin-top:30px;">@Model.company.EMail</li>
+                            </ul>
+                        </div>
+                        <br /><br /><br />
+                        <h1 style="margin-bottom: 50px;">@Model.company.FullName</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24143.717668517063!2d29.41039487784206!3d40.850698626269455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cb275d69083d9f%3A0x31c71c608505e93d!2s41400+Gebze+Osb%2FGebze%2FKocaeli!5e0!3m2!1str!2str!4v1537450728212" width="1500" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+

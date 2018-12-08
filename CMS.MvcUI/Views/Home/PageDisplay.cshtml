@@ -1,0 +1,109 @@
+﻿@model  CMS.Entities.Pages
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderSection {
+    <link href="~/Content/FrontEnd/plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/about.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/about_responsive.css">
+}
+
+@if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li></li>
+                                <li>@Model.Name</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature -->
+    <div class="feature">
+        <div class="feature_background" style="background-image:url(@Url.Content("~/Content/FrontEnd/images/courses_background.jpg"))"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="section_title_container text-center">
+                        <h2 class="section_title">@Html.Raw(Model.Title)</h2>
+                        <div class="section_subtitle">
+                            @*<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row feature_row">
+                <!-- Feature Content -->
+                <div class="col-md-12 feature_col">
+                    @Html.Raw(Model.ContentText)
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (Session["language"].ToString() == "EN")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li></li>
+                                <li>@Model.NameEN</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature -->
+    <div class="feature">
+        <div class="feature_background" style="background-image:url(@Url.Content("~/Content/FrontEnd/images/courses_background.jpg"))"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="section_title_container text-center">
+                        <h2 class="section_title">@Html.Raw(Model.TitleEN)</h2>
+                        <div class="section_subtitle">
+                            @*<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row feature_row">
+                <!-- Feature Content -->
+                <div class="col-md-12 feature_col">
+                    @Html.Raw(Model.ContentTextEN)
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+
+

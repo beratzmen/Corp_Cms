@@ -1,0 +1,180 @@
+﻿@model  CMS.MvcUI.Models.FooterViewModel
+
+@if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+{
+    <footer class="footer">
+        <div class="footer_background" style="background-image:url(@Url.Content("~/Content/FrontEnd/images/footer_background.png"))"></div>
+        <div class="container">
+            <div class="row footer_row">
+                <div class="col">
+                    <div class="footer_content">
+                        <div class="row">
+                            <div class="col-lg-3 footer_col">
+                                <!-- Footer About -->
+                                <div class="footer_section footer_about">
+                                    <div class="footer_logo_container">
+                                        <a href="#">
+                                            <div class="footer_logo_text">@Model.company.Name  @*Unic<span>at</span>*@</div>
+                                        </a>
+                                    </div>
+                                    <div class="footer_about_text">
+                                        <p>@*@Model.Slogan*@</p>
+                                    </div>
+                                    <div class="footer_social">
+                                        <ul>
+                                            <li><a href="@ViewBag.Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="@Url.Content(ViewBag.Google)" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                            <li><a href="@Url.Content(ViewBag.Instagram)" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                            <li><a href="@Url.Content(ViewBag.Twitter)" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-3 footer_col">
+
+                                <!-- Footer Contact -->
+                                <div class="footer_section footer_contact">
+                                    <div class="footer_title">İLETİŞİM BİLGİLERİ</div>
+                                    <div class="footer_contact_info">
+                                        <ul>
+                                            <li>E-Mail : @Model.company.EMail </li>
+                                            <li>Telefon :  @Model.company.Phone</li>
+                                            <li>Adres : @Model.company.Adress</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 footer_col">
+                                <!-- Footer links -->
+                                <div class="footer_section footer_links">
+                                    <div class="footer_title">MENÜLER</div>
+                                    <div class="footer_links_container">
+                                        <ul>
+                                            @foreach (var item in Model.menu)
+                                            {
+                                                <li><a href="@item.Link">@item.Name</a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 footer_col clearfix">
+                                <!-- Footer links -->
+                                <div class="footer_section footer_mobile">
+                                    <div class="footer_title">Mobile</div>
+                                    <div class="footer_mobile_content">
+                                        <div class="footer_image"><a href="@Url.Content(ViewBag.Android)" target="_blank"><img src="~/Content/FrontEnd/images/mobile_1.png" alt=""></a></div>
+                                        <div class="footer_image"><a href="@Url.Content(ViewBag.Ios)" target="_blank"><img src="~/Content/FrontEnd/images/mobile_2.png" alt=""></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row copyright_row">
+                <div class="col">
+                    <div class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start">
+                        <div class="cr_text">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script>  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+}
+else if (Session["language"].ToString() == "EN")
+{
+    <footer class="footer">
+        <div class="footer_background" style="background-image:url(@Url.Content("~/Content/FrontEnd/images/footer_background.png"))"></div>
+        <div class="container">
+            <div class="row footer_row">
+                <div class="col">
+                    <div class="footer_content">
+                        <div class="row">
+                            <div class="col-lg-3 footer_col">
+                                <!-- Footer About -->
+                                <div class="footer_section footer_about">
+                                    <div class="footer_logo_container">
+                                        <a href="#">
+                                            <div class="footer_logo_text">@Model.company.Name  @*Unic<span>at</span>*@</div>
+                                        </a>
+                                    </div>
+                                    <div class="footer_about_text">
+                                        <p>@*@Model.Slogan*@</p>
+                                    </div>
+                                    <div class="footer_social">
+                                        <ul>
+                                            <li><a href="@ViewBag.Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="@Url.Content(ViewBag.Google)" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                            <li><a href="@Url.Content(ViewBag.Instagram)" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                            <li><a href="@Url.Content(ViewBag.Twitter)" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-3 footer_col">
+
+                                <!-- Footer Contact -->
+                                <div class="footer_section footer_contact">
+                                    <div class="footer_title">CONTACT INFORMATION</div>
+                                    <div class="footer_contact_info">
+                                        <ul>
+                                            <li>E-Mail : @Model.company.EMail </li>
+                                            <li>PHONE :  @Model.company.Phone</li>
+                                            <li>ADRESS : @Model.company.Adress</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 footer_col">
+                                <!-- Footer links -->
+                                <div class="footer_section footer_links">
+                                    <div class="footer_title">MENUS</div>
+                                    <div class="footer_links_container">
+                                        <ul>
+                                            @foreach (var item in Model.menu)
+                                            {
+                                                <li><a href="@item.Link">@item.NameENG</a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 footer_col clearfix">
+                                <!-- Footer links -->
+                                <div class="footer_section footer_mobile">
+                                    <div class="footer_title">Mobile</div>
+                                    <div class="footer_mobile_content">
+                                        <div class="footer_image"><a href="@Url.Content(ViewBag.Android)" target="_blank"><img src="~/Content/FrontEnd/images/mobile_1.png" alt=""></a></div>
+                                        <div class="footer_image"><a href="@Url.Content(ViewBag.Ios)" target="_blank"><img src="~/Content/FrontEnd/images/mobile_2.png" alt=""></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row copyright_row">
+                <div class="col">
+                    <div class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start">
+                        <div class="cr_text">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script>  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+}

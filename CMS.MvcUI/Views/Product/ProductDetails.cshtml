@@ -1,0 +1,138 @@
+﻿@model CMS.Entities.Product
+@{
+    ViewBag.Title = "Ürün Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeaderSection{
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/course.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/course_responsive.css">
+}
+
+@if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li></li>
+                                <li>ÜRÜN DETAY</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Course -->
+    <div class="course">
+        <div class="container">
+            <div class="row">
+                <!-- Course -->
+                <div class="col-lg-12">
+                    <div class="course_container">
+                        <div class="course_title">@Model.Name</div>
+                        <!-- Course Image -->
+                        <div class="course_image"><img src="@Model.Image" alt=""></div>
+                        <!-- Course Tabs -->
+                        <div class="course_tabs_container">
+                            <div class="tabs d-flex flex-row align-items-center justify-content-start">
+                                <div class="tab active">ÜRÜN HAKKINDA</div>
+                                <div class="tab">FİYAT</div>
+                            </div>
+                            <div class="tab_panels">
+                                <!-- Description -->
+                                <div class="tab_panel active">
+                                    <div class="tab_panel_title">@Model.Name</div>
+                                    <div class="tab_panel_content">
+                                        <div class="tab_panel_text">
+                                            <p>@Html.Raw(Model.Description)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- FİYAT -->
+                                <div class="tab_panel tab_panel_2">
+                                    <div class="tab_panel_content">
+                                        <div class="tab_panel_title">@Model.Name</div>
+                                        <div class="tab_panel_content">
+                                            <div class="tab_panel_text">
+                                                <p>@Model.Price</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (Session["language"].ToString() == "EN")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li></li>
+                                <li>PRODUCT DETAILS</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Course -->
+    <div class="course">
+        <div class="container">
+            <div class="row">
+                <!-- Course -->
+                <div class="col-lg-12">
+                    <div class="course_container">
+                        <div class="course_title">@Model.NameEN</div>
+                        <!-- Course Image -->
+                        <div class="course_image"><img src="@Model.Image" alt=""></div>
+                        <!-- Course Tabs -->
+                        <div class="course_tabs_container">
+                            <div class="tabs d-flex flex-row align-items-center justify-content-start">
+                                <div class="tab active">ABOUT PRODUCT</div>
+                                <div class="tab">PRİCE</div>
+                            </div>
+                            <div class="tab_panels">
+                                <!-- Description -->
+                                <div class="tab_panel active">
+                                    <div class="tab_panel_title">@Model.NameEN</div>
+                                    <div class="tab_panel_content">
+                                        <div class="tab_panel_text">
+                                            <p>@Html.Raw(Model.DescriptionEN)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- FİYAT -->
+                                <div class="tab_panel tab_panel_2">
+                                    <div class="tab_panel_content">
+                                        <div class="tab_panel_title">@Model.NameEN</div>
+                                        <div class="tab_panel_content">
+                                            <div class="tab_panel_text">
+                                                <p>@Model.Price</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

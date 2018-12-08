@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6DB1B655-FA28-498A-B474-75C21CC40117}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CMS.Dal</RootNamespace>
+    <AssemblyName>CMS.Dal</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\BulletinDal\IBulletinDal.cs" />
+    <Compile Include="Abstract\CategoryDal\ICategoryDal.cs" />
+    <Compile Include="Abstract\CompanyDal\ICompanyDal.cs" />
+    <Compile Include="Abstract\ContactDal\IContactDal.cs" />
+    <Compile Include="Abstract\IMenuDal.cs" />
+    <Compile Include="Abstract\JobDal\IJobDal.cs" />
+    <Compile Include="Abstract\JobUserDal\IJobUserDal.cs" />
+    <Compile Include="Abstract\NewsDal\INewsDal.cs" />
+    <Compile Include="Abstract\BulletinMemberDal\IBulletinMemberDal.cs" />
+    <Compile Include="Abstract\PagesDal\IPagesDal.cs" />
+    <Compile Include="Abstract\ProductDal\IProductDal.cs" />
+    <Compile Include="Abstract\ReferenceDal\IReferenceDal.cs" />
+    <Compile Include="Abstract\RolDal\IRolDal.cs" />
+    <Compile Include="Abstract\SliderDal\ISliderDal.cs" />
+    <Compile Include="Abstract\SocialIconDal\ISocialIconDal.cs" />
+    <Compile Include="Abstract\UserDal\IUserDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Context\CmsContext.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFBulletinDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFCategoryDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFCompanyDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFContactDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFJobDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFJobUserDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFMenuDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFNewsDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFBulletinMemberDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFPagesDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFProductDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFReferenceDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFRoleDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFSliderDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFSocialIconDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EFUserDal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Concrete\PetaPoco\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CMS.Entities\CMS.Entities.csproj">
+      <Project>{11d97e67-9ed0-435b-abe9-147f3be5c043}</Project>
+      <Name>CMS.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

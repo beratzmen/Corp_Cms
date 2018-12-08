@@ -1,0 +1,92 @@
+﻿@model  CMS.Entities.Slider
+
+@{
+    ViewBag.Title = "Slider Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>SLİDER GÜNCELLE</h2>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    @using (Html.BeginForm("SliderUpdate", "Slider", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input  value="@Model.Id" name="Id" type="hidden"/>
+                        <div class="col-md-4">
+                            <div class="header">
+                                <h5>GÜNCEL SLİDER FOTOĞRAFI EKLE</h5>
+                            </div>
+                            <input type="file" class="btn btn-light dropzone" name="Image" accept=".png,.jpg,.jpeg,.JPG,.JPEG,.PNG" required autofocus />
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Textarea -->
+                            <div class="header">
+                                <h5>GÜNCEL SLİDER YAZISI-TR</h5>
+                            </div>
+                            <div class="form-line">
+                                <textarea rows="7" class="form-control no-resize auto-growth" placeholder="Slider üzerinde görüntülenecek metni girin" name="Text"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Textarea -->
+                            <div class="header">
+                                <h5>GÜNCEL SLİDER YAZISI-EN</h5>
+                            </div>
+                            <div class="form-line">
+                                <textarea rows="7" class="form-control no-resize auto-growth" placeholder="Slider üzerinde görüntülenecek ingilizce metni girin" name="TextEN"></textarea>
+                            </div>
+                        </div>    
+                        <button type="submit" class="btn btn-block btn-lg btn-success waves-effect">KAYDET</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Exportable Table -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>GÜNCELLENECEK SLİDER</h2>
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>YAZI-TR</th>
+                                <th>YAZI-EN</th>
+                                <th>RESİM</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>YAZI-TR</th>
+                                <th>YAZI-EN</th>
+                                <th>RESİM</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td>@Model.Id</td>
+                                <td>@Model.Text</td>
+                                <td>@Model.TextEN</td>
+                                <td><img src="@Url.Content(Model.Image)" style="width:250px;height:100px;" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Exportable Table -->

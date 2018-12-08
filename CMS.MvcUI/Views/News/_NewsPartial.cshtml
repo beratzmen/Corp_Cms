@@ -1,0 +1,108 @@
+﻿@model List<CMS.Entities.News>
+
+@if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+{
+    <!-- Latest News -->
+    <div class="news">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="section_title_container text-center">
+                        <h2 class="section_title">DUYURULAR</h2>
+                        <div class="section_subtitle"><p>SON DUYURULARIMIZ</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row news_row">
+                <div class="col-lg-6 news_col">
+                    <div class="news_posts_small">
+                        @foreach (var item in Model.OrderByDescending(x => x.Date).Skip(0).Take(5).ToList())
+                        {
+                            <!-- News Posts Small -->
+                            <div class="news_post_small">
+                                <div class="news_post_small_title"><a href="~/News/NewsDetails/@item.Id">@item.Title</a></div>
+                                <div class="news_post_meta">
+                                    <ul>
+                                        <li><a href="~/News/NewsDetails/@item.Id">admin</a></li>
+                                        <li><a href="~/News/NewsDetails/@item.Id">@item.Date.ToShortDateString()</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-lg-6 news_col">
+                    <div class="news_posts_small">
+                        @foreach (var item in Model.OrderByDescending(x => x.Date).Skip(5).Take(5).ToList())
+                        {
+                            <!-- News Posts Small -->
+                            <div class="news_post_small">
+                                <div class="news_post_small_title"><a href="~/News/NewsDetails/@item.Id">@item.Title</a></div>
+                                <div class="news_post_meta">
+                                    <ul>
+                                        <li><a href="~/News/NewsDetails/@item.Id">admin</a></li>
+                                        <li><a href="~/News/NewsDetails/@item.Id">@item.Date.ToShortDateString()</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (Session["language"].ToString() == "EN")
+{
+    <!-- Latest News -->
+    <div class="news">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="section_title_container text-center">
+                        <h2 class="section_title">NEWS</h2>
+                        <div class="section_subtitle"><p>LATEST NEWS</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row news_row">
+                <div class="col-lg-6 news_col">
+                    <div class="news_posts_small">
+                        @foreach (var item in Model.OrderByDescending(x => x.Date).Skip(0).Take(5).ToList())
+                        {
+                            <!-- News Posts Small -->
+                            <div class="news_post_small">
+                                <div class="news_post_small_title"><a href="~/News/NewsDetails/@item.Id">@item.TitleEN</a></div>
+                                <div class="news_post_meta">
+                                    <ul>
+                                        <li><a href="~/News/NewsDetails/@item.Id">admin</a></li>
+                                        <li><a href="~/News/NewsDetails/@item.Id">@item.Date.ToShortDateString()</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-lg-6 news_col">
+                    <div class="news_posts_small">
+                        @foreach (var item in Model.OrderByDescending(x => x.Date).Skip(5).Take(5).ToList())
+                        {
+                            <!-- News Posts Small -->
+                            <div class="news_post_small">
+                                <div class="news_post_small_title"><a href="~/News/NewsDetails/@item.Id">@item.TitleEN</a></div>
+                                <div class="news_post_meta">
+                                    <ul>
+                                        <li><a href="~/News/NewsDetails/@item.Id">admin</a></li>
+                                        <li><a href="~/News/NewsDetails/@item.Id">@item.Date.ToShortDateString()</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

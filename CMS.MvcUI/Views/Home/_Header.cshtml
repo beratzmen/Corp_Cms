@@ -1,0 +1,168 @@
+﻿@model  CMS.MvcUI.Models.ViewModel
+<header class="header">
+    <!-- Top Bar -->
+    <div class="top_bar">
+        <div class="top_bar_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+                            <ul class="top_bar_contact_list">
+                                <li><div class="question">Sorularınız mı var?</div></li>
+                                <li>
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <div>@Model.company.Phone</div>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                    <div>@Model.company.EMail</div>
+                                </li>
+                            </ul>
+                            <div class="question ml-auto">
+                                @Html.ActionLink("TR", "ChangeLanguage", "Home", new { languageName = "TR" }, htmlAttributes: new { style = "color : White" })
+                                |
+                                @Html.ActionLink("EN", "ChangeLanguage", "Home", new { languageName = "EN" }, htmlAttributes: new { style = "color : White" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Menu -->
+    <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+        <div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+        <div class="search">
+            <form action="#" class="header_search_form menu_mm">
+                <input type="search" class="search_input menu_mm" placeholder="Search" required="required">
+                <button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
+                    <i class="fa fa-search menu_mm" aria-hidden="true"></i>
+                </button>
+            </form>
+        </div>
+        <nav class="menu_nav">
+            <ul class="menu_mm">
+                @foreach (var item in Model.menu)
+                {
+                    if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+                    {
+                        <li class="menu_mm"><a href="@item.Link">@item.Name</a></li>
+                    }
+                    else if (Session["language"].ToString() == "EN")
+                    {
+                        <li class="menu_mm"><a href="@item.Link">@item.NameENG</a></li>
+                    }
+
+                }
+            </ul>
+        </nav>
+    </div>
+    <!-- Header Content -->
+    <div class="header_container">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                        <div class="logo_container">
+                            <a href="@Url.Action("Index","Home")">
+                                <div class="logo_text">@Model.company.Name  @*Unic<span>at</span>*@</div>
+                            </a>
+                        </div>
+                        <nav class="main_nav_contaner ml-auto">
+                            <ul class="main_nav">
+                                @{
+                                    var topMenu = Model.menu.Where(x => x.ParentMenuID == 0).OrderBy(x => x.DisplayOrder).ToList();
+                                }
+                                @foreach (var item in topMenu)
+                                {
+                                    var subMenu = Model.menu.Where(x => x.ParentMenuID == item.Id).OrderBy(x => x.DisplayOrder).ToList();
+                                    if (subMenu.Count > 0)
+                                    {
+                                        if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+                                        {
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    @item.Name
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    @foreach (var itemSubMenu in subMenu)
+                                                    {
+                                                        <a class="dropdown-item" href="@itemSubMenu.Link">@itemSubMenu.Name</a>
+                                                    }
+                                                </div>
+                                            </li>
+                                        }
+                                        else if (Session["language"].ToString() == "EN")
+                                        {
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    @item.NameENG
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    @foreach (var itemSubMenu in subMenu)
+                                                    {
+                                                        <a class="dropdown-item" href="@itemSubMenu.Link">@itemSubMenu.NameENG</a>
+                                                    }
+                                                </div>
+                                            </li>
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@item.Link">@item.Name</a>
+                                            </li>
+                                        }
+                                        else if (Session["language"].ToString() == "EN")
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@item.Link">@item.NameENG</a>
+                                            </li>
+                                        }
+                                    }
+                                }
+                            </ul>
+
+                            <!-- Hamburger -->
+                            <div class="shopping_cart" style="display:none;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+                            <div class="hamburger menu_mm">
+                                <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
+                            </div>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Search Panel -->
+    <div class="header_search_container">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="header_search_content d-flex flex-row align-items-center justify-content-end">
+                        <form action="#" class="header_search_form">
+                            <input type="search" class="search_input" placeholder="Search" required="required">
+                            <button class="header_search_button d-flex flex-column align-items-center justify-content-center">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,119 @@
+﻿@model CMS.Entities.Job
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderSection{
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/course.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/course_responsive.css">
+}
+
+@if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li></li>
+                                <li>İLAN DETAYI</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Course -->
+    <div class="course">
+        <div class="container">
+            <div class="row">
+                <!-- Course -->
+                <div class="col-lg-12">
+                    <div class="course_container">
+                        <div class="course_title" style="text-align:center;">@Model.Title</div>
+                        <!-- Course Image -->
+                        @*<div class="course_image"><img src="@Model.Image" alt=""></div>*@
+                        <!-- Course Tabs -->
+                        <div class="course_tabs_container">
+                            <div class="tabs d-flex flex-row align-items-center justify-content-start">
+                                <div class="tab active">İLAN AÇIKLAMA</div>
+                            </div>
+                            <div class="tab_panels" style="text-align:center;">
+                                <!-- Description -->
+                                <div class="tab_panel active">
+                                    @*<div class="tab_panel_title">@Model.Title</div>*@
+                                    <div class="tab_panel_content">
+                                        <div class="tab_panel_text">
+                                            <p>@Html.Raw(Model.Content)</p>
+                                        </div>
+                                    </div><br />
+                                    @*<button type="button" class="btn btn-primary  btn-lg" style="align-content:center;">BAŞVUR</button>*@
+                                    <a href="/Job/Apply/@Model.Id"  class="btn btn-primary  btn-lg" style="align-content:center;">BAŞVUR</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (Session["language"].ToString() == "EN")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li></li>
+                                <li>JOB DETAIL</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Course -->
+    <div class="course">
+        <div class="container">
+            <div class="row">
+                <!-- Course -->
+                <div class="col-lg-12">
+                    <div class="course_container">
+                        <div class="course_title">@Model.TitleEN</div>
+                        <!-- Course Image -->
+                        @*<div class="course_image"><img src="@Model.Image" alt=""></div>*@
+                        <!-- Course Tabs -->
+                        <div class="course_tabs_container">
+                            <div class="tabs d-flex flex-row align-items-center justify-content-start">
+                                <div class="tab active">ABOUT PRODUCT</div>
+                                @*<div class="tab">PRİCE</div>*@
+                            </div>
+                            <div class="tab_panels">
+                                <!-- Description -->
+                                <div class="tab_panel active">
+                                    <div class="tab_panel_title">@Model.TitleEN</div>
+                                    <div class="tab_panel_content">
+                                        <div class="tab_panel_text">
+                                            <p>@Html.Raw(Model.ContentEN)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

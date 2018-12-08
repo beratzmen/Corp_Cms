@@ -1,0 +1,15 @@
+﻿@model CMS.Entities.User
+
+<div class="info-container">
+    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Model.Name</div>
+    <div class="email">@Model.EMail</div>
+    <div class="btn-group user-helper-dropdown">
+        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+        <ul class="dropdown-menu pull-right">           
+            <li role="separator" class="divider"></li>          
+            <li role="separator" class="divider"></li>
+            <li><a href="/LoginOrRegister/LogOut"><i class="material-icons">input</i>ÇIKIŞ</a></li>
+        </ul>
+    </div>
+</div>
+

@@ -1,0 +1,256 @@
+﻿@model List<CMS.Entities.Menu>
+@{
+    ViewBag.Title = "Menu Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{
+    var parentID = Model.Where(r => r.ParentMenuID == 0).ToList();
+}
+
+@using (Html.BeginForm("MenuEkle", "Menu", FormMethod.Post))
+{
+    <!------ Include the above in your HEAD tag ---------->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="panel with-nav-tabs panel-default">
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1default" data-toggle="tab">TÜRKÇE</a></li>
+                            <li><a href="#tab2default" data-toggle="tab">İNGİLİZCE</a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab1default">
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="body">
+                                            <br />
+                                            <div class="row clearfix">
+                                                <div class="col-sm-3">
+                                                    @Html.Label("MENÜ İSMİ :")
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" placeholder="YENİ EKLENECEK MENÜ İSMİ" name="Name" required autofocus />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    @Html.Label("MENÜ LİNKİ :")
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" placeholder="LİNK-ÖRN:  /home/sektor" name="Link" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    @Html.Label("MENÜ YERLEŞİMİ :")
+                                                    <select class="form-control show-tick" name="ParentMenuID">
+                                                        <option>-- MENÜ SEÇİNİZ --</option>
+                                                        @foreach (var item in parentID)
+                                                        {
+                                                            <option value="@item.Id">@item.Name</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    @Html.Label("MENÜ GÖRÜNTÜ SIRASI :")
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="number" class="form-control" placeholder="GÖRÜNTÜ SIRASI -OPSİYONEL" name="DisplayOrder" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <!-- MENÜLERİN LİSTESİ -->
+                                            <div class="row clearfix">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="header">
+                                                        <h4>
+                                                            MEVCUT MENÜLERİN LİSTESİ
+                                                        </h4>
+                                                    </div>
+                                                    <div class="body">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>GÜNCELLE</th>
+                                                                        <th>SİL</th>
+                                                                        <th>MENÜ ADI</th>
+                                                                        <th>SAYFA LİNKİ</th>
+                                                                        <th>GÖRÜNTÜ SIRASI</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>GÜNCELLE</th>
+                                                                        <th>SİL</th>
+                                                                        <th>MENÜ ADI</th>
+                                                                        <th>SAYFA LİNKİ</th>
+                                                                        <th>GÖRÜNTÜ SIRASI</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                                <tbody>
+
+                                                                    @foreach (var item in Model)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a href="/Admin/Menu/MenuUpdate?id=@item.Id" class="btn btn-warning btn-circle waves-effect waves-circle waves-float">
+                                                                                    <i class="material-icons">update</i>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float modalAc" data-toggle="modal" data-target="#smallModal" data-id="@item.Id"><i class="material-icons">delete</i></button>
+                                                                            </td>
+
+                                                                            <td>@item.Name</td>
+                                                                            <td>@item.Link</td>
+                                                                            <td>@item.DisplayOrder</td>
+                                                                        </tr>
+                                                                    }
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- #END# MENÜLERİN LİSTESİ -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab2default">
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="body">
+                                            <br />
+                                            <div class="row clearfix">
+                                                <div class="col-sm-12">
+                                                    @Html.Label("MENÜ İSMİ İNGİLİZCE :")
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" placeholder="MENU NAME ENG" name="NameENG" required autofocus />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <!-- MENÜLERİN LİSTESİ -->
+                                        <div class="row clearfix">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="header">
+                                                    <h4>
+                                                        MEVCUT MENÜLERİN LİSTESİ
+                                                    </h4>
+                                                </div>
+                                                <div class="body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>GÜNCELLE</th>
+                                                                    <th>SİL</th>
+                                                                    <th>MENÜ ADI</th>
+                                                                    <th>SAYFA LİNKİ</th>
+                                                                    <th>GÖRÜNTÜ SIRASI</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>GÜNCELLE</th>
+                                                                    <th>SİL</th>
+                                                                    <th>MENÜ ADI</th>
+                                                                    <th>SAYFA LİNKİ</th>
+                                                                    <th>GÖRÜNTÜ SIRASI</th>
+                                                                </tr>
+                                                            </tfoot>
+                                                            <tbody>
+
+                                                                @foreach (var item in Model)
+                                                                {
+                                                                    <tr>
+                                                                        <td>
+                                                                            <a href="/Admin/Menu/MenuUpdate?id=@item.Id" class="btn btn-warning btn-circle waves-effect waves-circle waves-float">
+                                                                                <i class="material-icons">update</i>
+                                                                            </a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float modalAc" data-toggle="modal" data-target="#smallModal" data-id="@item.Id"><i class="material-icons">delete</i></button>
+                                                                        </td>
+
+                                                                        <td>@item.NameENG</td>
+                                                                        <td>@item.Link</td>
+                                                                        <td>@item.DisplayOrder</td>
+                                                                    </tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- #END# MENÜLERİN LİSTESİ -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-lg btn-success waves-effect">KAYDET</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+
+<!-- Small Size Modal -->
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="smallModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect messageSil">EVET</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">HAYIR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/FrontEnd/js/jquery-3.2.1.min.js"></script>
+<script>
+    $(".modalAc").click(function () {
+        var id = $(this).data("id");
+        $(".modal-body").html("ID'si " + id + " olan  içerik silinsin mi ?");
+        $(".messageSil").data("id", id);
+    });
+    $(".messageSil").click(function () {
+        var id = $(this).data("id");
+        $.ajax({
+            type: "POST",
+            url: "/Admin/Menu/MenuDelete/" + id,
+            success: function () {
+                alert("Kayıt Silindi ..");
+                window.location.href = "/Admin/Menu/MenuEkle";
+                //window.location.replace("MenuEkle");
+            },
+            error: function () {
+                window.location.replace("MenuEkle");
+            }
+        });
+    });
+</script>

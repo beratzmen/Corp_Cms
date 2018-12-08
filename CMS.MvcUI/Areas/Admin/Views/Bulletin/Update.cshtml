@@ -1,0 +1,104 @@
+﻿@model CMS.MvcUI.Areas.Admin.Models.vmBulletinCreate
+@{
+    ViewBag.Title = "Bülten Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>BÜLTEN GÜNCELLE</h2>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    @using (Html.BeginForm("Update", "Bulletin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="hidden" value="@Model.bulletin.Id" name="Id" readonly />
+                        <div class="col-sm-9">
+                            @Html.Label("Bülten Başlığı :")
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" placeholder="BÜLTEN BAŞLIĞI" value="@Model.bulletin.Title" name="Title" required autofocus />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.Label("Bülten Güncellenme Tarihi :")
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="datetime" class="form-control" placeholder="GÜNCELLENME TARİHİ" value="@DateTime.Now" name="Date" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            @Html.Label("Bülten İçeriği :")
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.TextAreaFor(x => x.ContentText)
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-lg btn-success waves-effect">KAYDET</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsSection{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://tinymce.cachefly.net/4.2/tinymce.min.js"></script>
+    <script type="text/javascript">
+        var roxyFileman = '/fileman/index.html?integration=tinymce4';
+        $(document).ready(function () {
+            tinymce.init({
+                selector: "textarea",
+                theme: "modern",
+                paste_data_images: true,
+                plugins: [
+                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen",
+                    "insertdatetime media nonbreaking save table contextmenu directionality",
+                    "emoticons template paste textcolor colorpicker textpattern"
+                ],
+                toolbar: "link | image",
+                toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+                toolbar2: "print preview media | forecolor backcolor emoticons",
+                image_advtab: true,
+                templates: [{
+                    title: 'Test template 1',
+                    content: 'Test 1'
+                }, {
+                    title: 'Test template 2',
+                    content: 'Test 2'
+                }],
+                file_browser_callback: RoxyFileBrowser
+            });
+        });
+        function RoxyFileBrowser(field_name, url, type, win) {
+            var cmsURL = roxyFileman;  // script URL - use an absolute path!
+            if (cmsURL.indexOf("?") < 0) {
+                cmsURL = cmsURL + "?type=" + type;
+            }
+            else {
+                cmsURL = cmsURL + "&type=" + type;
+            }
+            cmsURL += '&input=' + field_name + '&value=' + win.document.getElementById(field_name).value;
+            tinyMCE.activeEditor.windowManager.open({
+                file: cmsURL,
+                title: 'Roxy File Browser',
+                width: 850, // Your dimensions may differ - toy around with them!
+                height: 650,
+                resizable: "yes",
+                plugins: "media",
+                inline: "yes", // This parameter only has an effect if you use the inlinepopups plugin!
+                close_previous: "no"
+            }, {
+                    window: win,
+                    input: field_name
+                });
+            return false;
+        }
+    </script>
+}

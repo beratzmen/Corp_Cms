@@ -1,0 +1,92 @@
+﻿@model CMS.Entities.News
+@{
+    ViewBag.Title = "Haber Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeaderSection{
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/blog_single.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/blog_single_responsive.css">
+}
+
+@if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li></li>
+                                <li>DUYURU</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- NewsDetails -->
+    <div class="blog">
+        <div class="container">
+            <div class="row">
+                <!--Content -->
+                <div class="col-md-12">
+                    <div class="blog_content">
+                        <div class="blog_title">‘  @Model.Title  ’</div>
+                        <div class="blog_meta">
+                            <ul>
+                                <li>Post on <a href="#">@Model.Date.ToShortDateString()</a></li>
+                                <li>By <a href="#">admin</a></li>
+                            </ul>
+                        </div>
+                        <div class="blog_image"><img src="@Url.Content(Model.Image)" alt=""></div>
+                        <p>@Html.Raw(Model.ContentText)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (Session["language"].ToString() == "EN")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li></li>
+                                <li>NEWS</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- NewsDetails -->
+    <div class="blog">
+        <div class="container">
+            <div class="row">
+                <!--Content -->
+                <div class="col-md-12">
+                    <div class="blog_content">
+                        <div class="blog_title">‘  @Model.TitleEN  ’</div>
+                        <div class="blog_meta">
+                            <ul>
+                                <li>Post on <a href="#">@Model.Date.ToShortDateString()</a></li>
+                                <li>By <a href="#">admin</a></li>
+                            </ul>
+                        </div>
+                        <div class="blog_image"><img src="@Url.Content(Model.Image)" alt=""></div>
+                        <p>@Html.Raw(Model.ContentTextEN)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

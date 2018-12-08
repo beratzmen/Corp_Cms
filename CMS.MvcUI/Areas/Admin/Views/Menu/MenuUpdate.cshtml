@@ -1,0 +1,88 @@
+﻿@model  List<CMS.Entities.Menu>
+@{
+    /**/
+
+    ViewBag.Title = "Menu Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var parentID = Model.Where(r => r.ParentMenuID == 0).ToList();
+}
+
+@using (Html.BeginForm("MenuUpdate", "Menu", FormMethod.Post, new { @id = "AdminAddMenu" }))
+{
+    <!------ Include the above in your HEAD tag ---------->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="panel with-nav-tabs panel-default">
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1default" data-toggle="tab">TÜRKÇE</a></li>
+                            <li><a href="#tab2default" data-toggle="tab">İNGİLİZCE</a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab1default">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="hidden" value="@ViewBag.menu.Id" name="Id" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    @Html.Label("MENÜ İSMİ :")
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" value="@ViewBag.menu.Name" placeholder="YENİ EKLENECEK MENÜ İSMİ" name="Name" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    @Html.Label("SAYFA LİNKİ :")
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" value="@ViewBag.menu.Link" placeholder="LİNK-ÖRN = /home/PageDisplay/?pageName=..." name="Link" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    @Html.Label("MENÜ YERLEŞİMİ :")
+                                    <select class="form-control show-tick" name="ParentMenuID">
+                                        <option>-- MENÜ SEÇİNİZ --</option>
+                                        @foreach (var item in parentID)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-sm-12">
+                                    @Html.Label("MENÜ GÖRÜNTÜ SIRASI :")
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" value="@ViewBag.menu.DisplayOrder" name="DisplayOrder" placeholder="MENÜ'NÜN GÖRÜNTÜ SIRASI - İSTEĞE BAĞLI" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab2default">
+                                <div class="col-sm-12">
+                                    @Html.Label("İNGİLİZCE MENÜ İSMİ :")
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" value="@ViewBag.menu.NameENG" placeholder="YENİ EKLENECEK MENÜ İSMİ" name="NameENG" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-lg btn-success waves-effect">KAYDET</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

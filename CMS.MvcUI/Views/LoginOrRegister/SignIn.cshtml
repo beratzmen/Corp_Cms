@@ -1,0 +1,108 @@
+﻿@model CMS.Entities.User
+@{
+    Layout = null;
+    ViewBag.Title="Admin Giriş";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="~/Areas/Admin/Content/favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+    <link href="~/Areas/Admin/Content/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- Waves Effect Css -->
+    <link href="~/Areas/Admin/Content/plugins/node-waves/waves.css" rel="stylesheet" />
+    <!-- Animation Css -->
+    <link href="~/Areas/Admin/Content/plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="~/Areas/Admin/Content/css/style.css" rel="stylesheet">
+   
+</head>
+
+<body class="login-page">
+    <div class="login-box">
+        <div class="logo">
+            <a href="javascript:void(0);">YÖNETİM PANELİ</a>
+            <small>Admin Giriş Ekranı</small>
+        </div>
+        <div class="card">
+            <div class="body">
+                @using (Html.BeginForm("SignIn", "LoginOrRegister", FormMethod.Post, new { @id = "FrmUserLogin" }))
+                {
+                    <div class="msg">@*Sign in to start your session*@</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">email</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="EMail" id="Email" placeholder="Username" required autofocus>
+                            @* @Html.TextBoxFor(Model=>Model.EMail,new {@class="form-control",@placeholder="EMAİL" })*@
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="password" id="Password" placeholder="Password" required>
+                            @* @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", @placeholder = "PASSWORD" })*@
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8 p-t-5">
+                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                            <label for="rememberme">Beni Hatırla</label>
+                        </div>
+                        <div class="col-xs-4">
+                            <button class="btn btn-block bg-pink waves-effect" type="button" onclick="userLogin();">GİRİŞ</button>
+                        </div>
+                    </div>
+                }
+
+
+                <!--Modal Default Size -->
+                <div class="modal fade" id="MdlBilgilendirme" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="MdlBaslik">Modal title</h4>
+                            </div>
+                            <div class="modal-body" id="MdlAciklama">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Proin sodales orci ante, sed ornare eros vestibulum ut.
+                            </div>
+                            <div class="modal-footer">
+                                @*<button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>*@
+                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">KAPAT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="~/scripts/cmsscript/CmsScript.js"></script>
+
+    <!-- Jquery Core Js -->
+    <script src="~/Areas/Admin/Content/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="~/Areas/Admin/Content/plugins/bootstrap/js/bootstrap.js"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="~/Areas/Admin/Content/plugins/node-waves/waves.js"></script>
+    <!-- Validation Plugin Js -->
+    <script src="~/Areas/Admin/Content/plugins/jquery-validation/jquery.validate.js"></script>
+    <!-- Custom Js -->
+    <script src="~/Areas/Admin/Content/js/admin.js"></script>
+    <script src="~/Areas/Admin/Content/js/pages/examples/sign-in.js"></script>
+
+</body>
+</html>

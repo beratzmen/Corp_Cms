@@ -1,0 +1,64 @@
+﻿@model List<CMS.Entities.Role>
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h4>YENİ YÖNETİCİ KAYDI</h4>
+    <div class="signup-box">       
+        <div class="card">
+            <div class="body">
+                <form id="sign_up" method="POST">
+                    <div class="msg"></div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="Name" placeholder="İsim" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="SurName" placeholder="Soy İsim" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">email</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="email" class="form-control" name="EMail" placeholder="Email Address" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="Password" minlength="6" placeholder="Şifre" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="Password" minlength="6" placeholder="Şifre Tekrar" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <select class="form-control show-tick" name="RoleId" required autofocus>
+                            @foreach (var item in Model)
+                            {
+                                <option value="@item.Id">@item.RoleName</option>
+                            }
+                        </select>
+                    </div>
+                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">KAYDET</button>
+                </form>
+            </div>
+        </div>
+    </div>

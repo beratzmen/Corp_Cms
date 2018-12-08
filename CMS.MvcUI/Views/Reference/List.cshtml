@@ -1,0 +1,43 @@
+﻿@model List<CMS.Entities.Reference>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeaderSection{
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/course.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/course_responsive.css">
+}
+
+<!-- Home -->
+<div class="home">
+    <div class="breadcrumbs_container">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li>REFERANSLAR</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Home -->
+<div class="row team_row">
+
+    <!-- Team Item -->
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-6 team_col">
+            <div class="team_item">
+                  <div class="team_image"><a href="@item.Sites" target="_blank"><img src="@item.Image" alt=""></a></div>
+                <div class="team_body">
+                    <div class="team_title"><a href="@item.Sites" target="_blank">@item.Name</a></div>
+                    <div class="team_subtitle">@item.Sites</div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

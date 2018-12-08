@@ -1,0 +1,60 @@
+﻿@model  List<CMS.Entities.Reference>
+
+
+@if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+{
+    <!-- Team -->
+    <div class="team">
+        <div class="team_background parallax-window" data-parallax="scroll" data-image-src="@Url.Content("~/Content/FrontEnd/images/team_background.jpg")" data-speed="0.8"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="section_title_container text-center">
+                        <h2 class="section_title"><a href="/Reference/List">REFERANSLAR</a></h2>
+                        @*<div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (Session["language"].ToString() == "EN")
+{
+    <!-- Team -->
+    <div class="team">
+        <div class="team_background parallax-window" data-parallax="scroll" data-image-src="@Url.Content("~/Content/FrontEnd/images/team_background.jpg")" data-speed="0.8"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="section_title_container text-center">
+                        <h2 class="section_title"><a href="/Reference/List">REFERENCES</a></h2>
+                        @*<div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+<!-- Partners -->
+<div class="partners">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="partners_slider_container">
+                    <div class="owl-carousel owl-theme partners_slider">
+                        @foreach (var item in Model)
+                        {
+                            <!-- Partner Item -->
+                            <div class="owl-item partner_item"><img src="@item.Image" alt=""></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

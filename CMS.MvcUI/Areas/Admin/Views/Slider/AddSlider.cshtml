@@ -1,0 +1,145 @@
+﻿@model List<CMS.Entities.Slider>
+@{
+    ViewBag.Title = "Slider";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<!-- File Upload | Drag & Drop OR With Click & Choose -->
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <form action="AddSlider" id="frmFileUpload" method="post" enctype="multipart/form-data">
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="header">
+                            <h5>SLİDER İÇİN FOTOĞRAF EKLE</h5>
+                        </div>
+                        <input type="file" class="btn btn-light dropzone" name="Image" accept=".png,.jpg,.jpeg,.JPG,.JPEG,.PNG" required autofocus />
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Textarea -->
+                        <div class="header">
+                            <h5>SLİDER YAZISI-TR</h5>
+                        </div>
+                        <div class="form-line">
+                            <textarea rows="7" class="form-control no-resize auto-growth" placeholder="Slider üzerinde görüntülenecek metni girin" name="Text"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Textarea -->
+                        <div class="header">
+                            <h5>SLİDER YAZISI-EN</h5>
+                        </div>
+                        <div class="form-line">
+                            <textarea rows="7" class="form-control no-resize auto-growth" placeholder="Slider üzerinde görüntülenecek ingilizce metni girin" name="TextEN"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-block btn-lg btn-success waves-effect">KAYDET</button>
+            </form>
+            <!-- #END# Textarea -->
+        </div>
+    </div>
+    <!-- Exportable Table -->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h5>GÖRÜNTÜLENEN SLİDER FOTOĞRAFLARI</h5>
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead>
+                            <tr>
+                                <th>SİL</th>
+                                <th>GÜNCELLE</th>
+                                <th>RESİM</th>
+                                <th>RESİM YAZISI-TR</th>
+                                <th>RESİM YAZISI-EN</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>SİL</th>
+                                <th>GÜNCELLE</th>
+                                <th>RESİM</th>
+                                <th>RESİM YAZISI-TR</th>
+                                <th>RESİM YAZISI-EN</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float modalAc" data-toggle="modal" data-target="#smallModal" data-id="@item.Id"><i class="material-icons">delete</i></button>
+                                    </td>
+                                    <td>
+                                        <a href="/Admin/Slider/SliderUpdate?id=@item.Id" class="btn btn-warning btn-circle waves-effect waves-circle waves-float">
+                                            <i class="material-icons">update</i>
+                                        </a>
+                                    </td>
+                                    <td><img src="@Url.Content(item.Image)" style="width:300px;height:150px;" /></td>
+                                    <td>@item.Text</td>
+                                    <td>@item.TextEN</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Small Size Modal -->
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="smallModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect messageSil">EVET</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">HAYIR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/FrontEnd/js/jquery-3.2.1.min.js"></script>
+<script>
+    $(".modalAc").click(function () {
+        var id = $(this).data("id");
+        $(".modal-body").html("ID'si " + id + " olan  içerik silinsin mi ?");
+        $(".messageSil").data("id", id);
+    });
+    $(".messageSil").click(function () {
+        var id = $(this).data("id");
+        $.ajax({
+            type: "POST",
+            url: "/Admin/Slider/SliderDelete/" + id,
+            success: function () {
+                alert("Kayıt Silindi ..");
+                window.location.href = "/Admin/Slider/AddSlider";
+                //window.location.replace("AddSlider");
+            },
+            error: function () {
+                window.location.replace("AddSlider");
+            }
+        });
+    });
+</script>
+
+
+
+<!-- #END# Exportable Table -->
+<!-- Bootstrap Colorpicker Js -->
+<script src="~/Areas/Admin/Content/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<!-- Dropzone Plugin Js -->
+<script src="~/Areas/Admin/Content/plugins/dropzone/dropzone.js"></script>
+<!-- noUISlider Plugin Js -->
+<script src="~/Areas/Admin/Content/plugins/nouislider/nouislider.js"></script>

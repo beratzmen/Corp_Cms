@@ -1,0 +1,44 @@
+﻿@model  CMS.Entities.SocialIcon
+@{
+    /**/
+
+    ViewBag.Title = "Sosyal Medya Güncelleme";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="block-header">
+    <h2>SOSYAL MEDYA LİNKİ GÜNCELLEME SAYFASI</h2>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    GİRİŞ
+                </h2>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    @using (Html.BeginForm("Update", "SocialIcon", FormMethod.Post))
+                    {
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" placeholder="LİNK GİRİN-ÖRN:  www.abc.com" name="Link" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <select class="form-control show-tick" name="Id">                                                          
+                                    <option value="@Model.Id">@Model.Name</option>
+                            </select>
+                        </div>
+                        <input class="Button" type="submit" value="KAYDET" id="sonuc" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

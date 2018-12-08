@@ -1,0 +1,90 @@
+﻿@model CMS.Entities.Reference
+
+@{
+    ViewBag.Title = "Referans Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>YENİ REFERANS GÜNCELLE</h2>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    @using (Html.BeginForm("ReferenceUpdate", "Reference", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+
+                        <input type="hidden"  value="@Model.Id" name="Id" required readonly />
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" placeholder="REFERANS İSMİ" value="@Model.Name" required name="Name" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" placeholder="REFERANS SİTESİ" value="@Model.Sites" name="Sites" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="file" class="form-control" placeholder="REFERANS RESMİ" value="@Model.Image" required name="Image" />
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-lg btn-success waves-effect">KAYDET</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Exportable Table -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>REFERANS LİSTESİ</h2>
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>İSİM</th>
+                                <th>SİTE</th>
+                                <th>RESİM</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>İSİM</th>
+                                <th>SİTE</th>
+                                <th>RESİM</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td>@Model.Id</td>
+                                <td>@Model.Name</td>
+                                <td>@Model.Sites</td>
+                                <td><img src="@Url.Content(Model.Image)" style="width:250px;height:100px;" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Exportable Table -->

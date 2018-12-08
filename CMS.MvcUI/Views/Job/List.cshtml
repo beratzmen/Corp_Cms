@@ -1,0 +1,143 @@
+﻿@model List<CMS.Entities.Job>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeaderSection{
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/courses.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/courses_responsive.css">
+
+}
+
+@if (Convert.ToInt32(Session["success"])==1)
+{
+    <script>
+        alert("Başvurunuz Alınmıştır .");
+    </script>
+    Session.Abandon();
+    //ViewBag.deneme = false;
+}
+
+
+@if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li>İŞ İLANLARI</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Home -->
+    <!-- TÜM İLANLAR -->
+    <div class="courses">
+        <div class="container">
+            <div class="row">
+                <!-- Courses Main Content -->
+                <div class="col-lg-12">
+                    @*//arama buradaydı*@
+                    <div class="courses_container">
+                        <div class="row courses_row">
+                            @foreach (var item in Model.OrderByDescending(x => x.Date))
+                            {
+                                <!-- Course -->
+                                <div class="col-lg-6 course_col">
+                                    <div class="course">
+                                        @*<div class="course_image"><img src="@item.Image" alt=""></div>*@
+                                        <div class="course_body">
+                                            <h3 class="course_title"><a href="/Job/Detail/@item.Id">@Html.Raw(item.Title)</a></h3>
+                                            <div class="course_text">
+                                                @*<p>@Html.Raw(item.Description.Substring(0, 20)) ..</p>*@
+                                            </div>
+                                        </div>
+                                        @*<div class="course_footer">
+                                                <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                    <div class="course_info">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <span>5</span>
+                                                    </div>
+                                                    <div class="course_price ml-auto">@item.Price</div>
+                                                </div>
+                                            </div>*@
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TÜM İLANLAR -->
+}
+else if (Session["language"].ToString() == "EN")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li>JOB NOTICES</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Home -->
+    <!-- TÜM İLANLAR -->
+    <div class="courses">
+        <div class="container">
+            <div class="row">
+                <!-- Courses Main Content -->
+                <div class="col-lg-12">
+                    @*//arama buradaydı*@
+                    <div class="courses_container">
+                        <div class="row courses_row">
+                            @foreach (var item in Model.OrderByDescending(x => x.Date))
+                            {
+                                <!-- Course -->
+                                <div class="col-lg-6 course_col">
+                                    <div class="course">
+                                        @*<div class="course_image"><img src="@item.Image" alt=""></div>*@
+                                        <div class="course_body">
+                                            <h3 class="course_title"><a href="/Job/Detail/@item.Id">@Html.Raw(item.TitleEN)</a></h3>
+                                            <div class="course_text">
+                                                @*<p>@Html.Raw(item.DescriptionEN.Substring(0, 20)) ..</p>*@
+                                            </div>
+                                        </div>
+                                        @*<div class="course_footer">
+                                                <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                    <div class="course_info">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <span>5 Ratings</span>
+                                                    </div>
+                                                    <div class="course_price ml-auto">@item.Price</div>
+                                                </div>
+                                            </div>*@
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TÜM İLANLAR -->
+}
+

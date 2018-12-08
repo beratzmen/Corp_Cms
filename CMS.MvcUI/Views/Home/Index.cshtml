@@ -1,0 +1,136 @@
+﻿@model CMS.MvcUI.Models.HamburgerMenuViewModel
+
+@{
+    ViewBag.Title = "Ana Sayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+{
+
+    <!-- Home -->
+    <div class="home">
+        <div class="home_slider_container">
+            <div class="owl-carousel owl-theme home_slider">
+                @foreach (var item in Model.slider)
+                {
+                    <div class="owl-item">
+                        <div class="home_slider_background" style="background-image:url(@Url.Content(item.Image))"></div>
+                        <div class="home_slider_content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        @*<div class="home_slider_title">bb</div>*@
+                                        <div class="home_slider_subtitle" style="color:azure">@item.Text</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- Home Slider Nav -->
+        <div class="home_slider_nav home_slider_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+        <div class="home_slider_nav home_slider_next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+    </div>
+    <!-- Home -->
+    <!-- Referanslar -->
+    { Html.RenderAction("ReferenceAction", "Reference"); }
+    <!-- Referanslar -->
+    <!-- Duyurular -->
+    {Html.RenderAction("NewsPartial", "News");}
+    <!-- Duyurular -->
+    <!-- Haberdar olmak için -->
+    <div class="newsletter">
+        <div class="newsletter_background parallax-window" data-parallax="scroll" data-image-src="@Url.Content("~/Content/FrontEnd/images/newsletter.jpg")" data-speed="0.8"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="newsletter_container d-flex flex-lg-row flex-column align-items-center justify-content-start">
+
+                        <!-- Newsletter Content -->
+                        <div class="newsletter_content text-lg-left text-center">
+                            <div class="newsletter_title">Haberdar olmak için bize katıl!</div>
+                            @*<div class="newsletter_subtitle">Subcribe to lastest smartphones news & great deals we offer</div>*@
+                        </div>
+
+                        <!-- Newsletter Form -->
+                        <div class="newsletter_form_container ml-lg-auto">
+                            <form action="/Home/NewsMemberSave" method="post" id="newsletter_form" class="newsletter_form d-flex flex-row align-items-center justify-content-center">
+                                <input type="email" name="EMail" class="newsletter_input" placeholder="Your Email" required="required">
+                                <button type="submit" class="newsletter_button">KAYIT OL</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Haberdar olmak için -->
+}
+else if (Session["language"].ToString() == "EN")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="home_slider_container">
+            <div class="owl-carousel owl-theme home_slider">
+                @foreach (var item in Model.slider)
+                {
+                    <div class="owl-item">
+                        <div class="home_slider_background" style="background-image:url(@Url.Content(item.Image))"></div>
+                        <div class="home_slider_content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        @*<div class="home_slider_title">bb</div>*@
+                                        <div class="home_slider_subtitle" style="color:azure">@item.TextEN</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- Home Slider Nav -->
+        <div class="home_slider_nav home_slider_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+        <div class="home_slider_nav home_slider_next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+    </div>
+    <!-- Home -->
+    <!-- Referanslar -->
+    { Html.RenderAction("ReferenceAction", "Reference"); }
+    <!-- Referanslar -->
+    <!-- Duyurular -->
+    {Html.RenderAction("NewsPartial", "News");}
+    <!-- Duyurular -->
+    <!-- Haberdar olmak için -->
+    <div class="newsletter">
+        <div class="newsletter_background parallax-window" data-parallax="scroll" data-image-src="@Url.Content("~/Content/FrontEnd/images/newsletter.jpg")" data-speed="0.8"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="newsletter_container d-flex flex-lg-row flex-column align-items-center justify-content-start">
+
+                        <!-- Newsletter Content -->
+                        <div class="newsletter_content text-lg-left text-center">
+                            <div class="newsletter_title">Join us to be informed!</div>
+                            @*<div class="newsletter_subtitle">Subcribe to lastest smartphones news & great deals we offer</div>*@
+                        </div>
+
+                        <!-- Newsletter Form -->
+                        <div class="newsletter_form_container ml-lg-auto">
+                            <form action="/Home/NewsMemberSave" method="post" id="newsletter_form" class="newsletter_form d-flex flex-row align-items-center justify-content-center">
+                                <input type="email" name="EMail" class="newsletter_input" placeholder="Your Email" required="required">
+                                <button type="submit" class="newsletter_button">SIGN UP</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Haberdar olmak için -->
+}

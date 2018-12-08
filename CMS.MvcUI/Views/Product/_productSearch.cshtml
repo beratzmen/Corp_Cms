@@ -1,0 +1,199 @@
+﻿@model CMS.MvcUI.Models.CategoryProductViewModel
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "ProductShow";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeaderSection{
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/courses.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/FrontEnd/styles/courses_responsive.css">
+}
+
+
+@if (string.IsNullOrEmpty(Session["language"].ToString()) == true || Session["language"].ToString() == "TR")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li>ÜRÜNLER</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Home -->
+    <!-- TÜM ÜRÜNLER -->
+    <div class="courses">
+        <div class="container">
+            <div class="row">
+                <!-- Courses Main Content -->
+                <div class="col-lg-8">
+                    @*//arama buradaydı*@
+                    <div class="courses_container">
+                        <div class="row courses_row">
+                            @foreach (var item in Model.productList)
+                            {
+                                <!-- Course -->
+                                <div class="col-lg-6 course_col">
+                                    <div class="course">
+                                        <div class="course_image"><img src="@item.Image" alt=""></div>
+                                        <div class="course_body">
+                                            <h3 class="course_title"><a href="/Product/ProductDetails/@item.Id">@item.Name</a></h3>
+                                            <div class="course_text">
+                                                @*<p>@Html.Raw(item.Description.Substring(0,20)) ..</p>*@
+                                            </div>
+                                        </div>
+                                        <div class="course_footer">
+                                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                <div class="course_info">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                    <span>5 Ratings</span>
+                                                </div>
+                                                <div class="course_price ml-auto">@item.Price</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="t"></div>
+                        <div class="row pagination_row">
+                            <div class="col">
+                                <div class="pagination_container d-flex flex-row align-items-center justify-content-start">
+                                    <ul class="pagination_list">
+                                        @Html.PagedListPager(Model.productList, _sayfaNo => Url.Action("ProductSearch", "Product", new { page = _sayfaNo }))
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Courses Sidebar -->
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <!-- Categories -->
+                        <div class="sidebar_section">
+                            <div class="courses_search_container">
+                                <form action="/Product/ProductSearch" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
+                                    <input type="search" name="Name" class="courses_search_input" placeholder="Ürün İsmi" required="required">
+                                    <button action="submit" class="courses_search_button ml-auto">ARA</button>
+                                </form>
+                            </div>
+                            <div class="sidebar_section_title">KATEGORİLER</div>
+                            <div class="sidebar_categories">
+                                <ul>
+                                    @foreach (var item in Model.category)
+                                    {
+                                        <li><a href="/Product/ProductByCategory/@item.Id">@item.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TÜM ÜRÜNLER -->
+}
+else if (Session["language"].ToString() == "EN")
+{
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li>PRODUCTS</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Home -->
+    <!-- TÜM ÜRÜNLER -->
+    <div class="courses">
+        <div class="container">
+            <div class="row">
+                <!-- Courses Main Content -->
+                <div class="col-lg-8">
+                    @*//arama buradaydı*@
+                    <div class="courses_container">
+                        <div class="row courses_row">
+                            @foreach (var item in Model.productList)
+                            {
+                                <!-- Course -->
+                                <div class="col-lg-6 course_col">
+                                    <div class="course">
+                                        <div class="course_image"><img src="@item.Image" alt=""></div>
+                                        <div class="course_body">
+                                            <h3 class="course_title"><a href="/Product/ProductDetails/@item.Id">@item.NameEN</a></h3>
+                                            <div class="course_text">
+                                                @*<p>@Html.Raw(item.DescriptionEN.Substring(0,20)) ..</p>*@
+                                            </div>
+                                        </div>
+                                        <div class="course_footer">
+                                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                <div class="course_info">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                    <span>5 Ratings</span>
+                                                </div>
+                                                <div class="course_price ml-auto">@item.Price</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="t"></div>
+                        <div class="row pagination_row">
+                            <div class="col">
+                                <div class="pagination_container d-flex flex-row align-items-center justify-content-start">
+                                    <ul class="pagination_list">
+                                        @Html.PagedListPager(Model.productList, _sayfaNo => Url.Action("ProductSearch", "Product", new { page = _sayfaNo }))
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Courses Sidebar -->
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <!-- Categories -->
+                        <div class="sidebar_section">
+                            <div class="courses_search_container">
+                                <form action="/Product/ProductSearch" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
+                                    <input type="search" name="Name" class="courses_search_input" placeholder="Ürün İsmi" required="required">
+                                    <button action="submit" class="courses_search_button ml-auto">ARA</button>
+                                </form>
+                            </div>
+                            <div class="sidebar_section_title">KATEGORİLER</div>
+                            <div class="sidebar_categories">
+                                <ul>
+                                    @foreach (var item in Model.category)
+                                    {
+                                        <li><a href="/Product/ProductByCategory/@item.Id">@item.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TÜM ÜRÜNLER -->
+}
